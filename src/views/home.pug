@@ -1,7 +1,10 @@
-doctype html 
-html(lagn="ko")
-    head
-        title wetube 
-    body 
-        h1 welcome to wetube 
-    include partials/footer.pug
+extends base
+include mixins/video
+
+block content
+   h2 welcome here you will see the trending videos
+   each potato in videos
+        +video(potato)
+   else
+        li sorry nothing found.
+   

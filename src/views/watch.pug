@@ -1,6 +1,7 @@
-doctype html 
-html(lagn="ko")
-    head
-        title wetube 
-    body 
-        h1 welcome to wetube 
+extends base.pug
+
+
+
+block content
+    h3 #{video.views} #{video.views === 1 ? "view" : "views"}
+    a(href=`${video.id}/edit`) Edit video &rarr;
