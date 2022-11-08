@@ -4,8 +4,6 @@ import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 
-const PORT = 4000;
-
 const app = express();
 const logger = morgan("dev");
 
@@ -17,7 +15,4 @@ app.use("/", globalRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 
-const hadleListening = () =>
-  console.log(`server listening on port http://localhost:${PORT}`);
-
-app.listen(PORT, hadleListening);
+export default app;
