@@ -1,21 +1,29 @@
 doctype html 
 html(lang="ko")
     head
-       title #{pageTitle} | wetube
-       link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
+        title #{pageTitle} | #{siteName}
+        link(rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css")
     body
         header 
             h1=pageTitle
             nav 
                 ul
                     li
-                        a(href="/videos/upload") upload video
-                    li
                         a(href="/") home
+                    if loggedIn
+                        li
+                            a(href="/logout")  Log Out
+                        li
+                            a(href="/my-profile") #{loggedInUser.name}의 Profile
+                    else
+                        li
+                            a(href="/join")  Join
+                        li
+                            a(href="/login")  Login                         
                     li
-                        a(href="/search") Search    
+                        a(href="/search") Search
                     li
-                        a(href="/join")  Join
+                        a(href="/videos/upload") Upload Video
         main            
             block content 
     include partials/footer
