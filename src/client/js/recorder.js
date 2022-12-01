@@ -6,12 +6,6 @@ let stream;
 let recorder;
 let videoFile;
 
-/*
-기억해야할 핵심은 binary data를 사용하고 싶다면 buffer을 사용해야한다.
-
-blob은 배열안에 배열들을 받을 수 있다.
-그리고 js에게 이건 video/mp4 type의 파일이라고 알려주기
-*/
 const handleDownload = async () => {
   const ffmpeg = createFFmpeg({
     corePath: "https://unpkg.com/@ffmpeg/core@0.8.5/dist/ffmpeg-core.js",
