@@ -31,5 +31,12 @@
     background-color: white;
     color: black;
     margin-bottom: 10px;
+    position: relative;
+  }
+  .video__comment-delete {
+    position: absolute;
+    right: 10px;
+    display: block;
+    bottom: 10px;
   }
 }

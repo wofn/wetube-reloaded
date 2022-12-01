@@ -152,3 +152,24 @@ export const createComment = async (req, res) => {
   video.save();
   return res.status(201).json({ newCommentId: comment._id });
 };
+
+export const deleteComment = async (req, res) => {
+  const {
+    params: { id },
+    session: {
+      user: { _id },
+    },
+  } = req;
+  const comment = await Comment.findById(id).populate("video");
+  if (!comment) {
+    return res.render("404", { pageTitle: "comment not found" });
+  }
+  if (String(comment.video.owner) !== String(_id)) {
+    req.flash("error", "You are not the owner of the video.");
+    return res.status(403).redirect("/");
+  }
+  await Comment.findByIdAndDelete(id);
+  comment.video.comments.splice(comment.video.comments.indexOf(id), 1);
+  comment.video.save();
+  return res.sendStatus(201);
+};
