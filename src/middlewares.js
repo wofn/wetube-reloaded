@@ -11,14 +11,16 @@ export const protectorMiddleware = (req, res, next) => {
   if (req.session.loggedIn) {
     return next();
   } else {
+    req.flash("error", "Log in first.");
     return res.redirect("/login");
   }
 };
-
+//내가 로그인된 상태로 로그인 페이지로 가려고 하면, 홈페이지로 돌려보내는 역할
 export const publicOnlyMiddleware = (req, res, next) => {
   if (!req.session.loggedIn) {
     return next();
   } else {
+    req.flash("error", "Not authorized");
     return res.redirect("/");
   }
 };

@@ -11,6 +11,7 @@ const fullScreenBtn = document.getElementById("fullScreen");
 const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
+const textarea = document.getElementById("textarea");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -125,7 +126,7 @@ video.addEventListener("click", handlePlayClick);
 
 //스페이스바를 누르면 멈춤 PLAY/PAUSE
 document.addEventListener("keyup", (event) => {
-  if (event.code === "Space") {
+  if (event.code === "Space" && event.target.id !== "textarea") {
     handlePlayClick();
   }
 });
@@ -133,10 +134,10 @@ document.addEventListener("keyup", (event) => {
 //- m 버튼으로 mute 사용하기
 document.addEventListener("keydown", (event) => {
   const keyboardKey = event.key;
-  if (keyboardKey === "M") {
+  if (keyboardKey === "M" && event.target.id !== "textarea") {
     handleMuteClick();
   }
-  if (keyboardKey === "m") {
+  if (keyboardKey === "m" && event.target.id !== "textarea") {
     handleMuteClick();
   }
 });
