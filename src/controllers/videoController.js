@@ -1,5 +1,5 @@
 import Video from "../models/Video";
-import Comment from "../models/Comment";
+import Comment from "../models/comment";
 import User from "../models/User";
 
 export const home = async (req, res) => {
