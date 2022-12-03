@@ -56,16 +56,17 @@ const formatTime = (seconds) => {
   return new Date(seconds * 1000).toISOString().substring(startIdx, 19);
 };
 
-const handleLoadedMetadata = () => {
+const handleLoadedData = () => {
   totalTime.innerText = formatTime(Math.floor(video.duration));
   timeline.max = Math.floor(video.duration);
 };
 
 const handleTimeUpdate = () => {
-  currenTime.innerText = formatTime(Math.floor(video.currentTime));
-  timeline.value = Math.floor(video.currentTime);
+  if (!isNaN(video.duration)) {
+    currenTime.innerText = formatTime(Math.floor(video.currentTime));
+    timeline.value = Math.floor(video.currentTime);
+  }
 };
-
 const handleTimelineChange = (event) => {
   const {
     target: { value },
@@ -113,7 +114,8 @@ const handleEnded = () => {
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadeddata", handleLoadedMetadata);
+video.addEventListener("canplay", handleLoadedData);
+handleLoadedData();
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
 videoContainer.addEventListener("mousemove", handleMouseMove);
